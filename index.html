@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DriftKing - Ultimate Drift Racing</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Home Screen -->
+        <div id="home-screen" class="screen active">
+            <div class="home-content">
+                <div class="game-title">
+                    <h1>DRIFTKING</h1>
+                    <p class="subtitle">Master the Art of Drifting</p>
+                </div>
+
+                <div class="player-stats">
+                    <div class="stat-box">
+                        <span class="stat-label">Credits</span>
+                        <span class="stat-value" id="credits-display">0</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-label">Level</span>
+                        <span class="stat-value" id="level-display">1</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-label">Total Drifts</span>
+                        <span class="stat-value" id="drifts-display">0</span>
+                    </div>
+                </div>
+
+                <div class="current-car-display">
+                    <h2>Current Car</h2>
+                    <div class="car-preview" id="current-car-preview">
+                        <div class="car-model">🏎️</div>
+                        <p id="current-car-name">Starter Car</p>
+                    </div>
+                </div>
+
+                <div class="menu-buttons">
+                    <button class="btn btn-primary" onclick="goToScreen('play-screen')">PLAY</button>
+                    <button class="btn btn-secondary" onclick="goToScreen('garage-screen')">GARAGE</button>
+                    <button class="btn btn-secondary" onclick="goToScreen('shop-screen')">SHOP</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Play Screen -->
+        <div id="play-screen" class="screen">
+            <div class="play-header">
+                <button class="btn-back" onclick="goToScreen('home-screen')">← BACK</button>
+                <h2>DRIFT CHALLENGE</h2>
+                <div class="play-stats">
+                    <span>Session Credits: <span id="play-credits">0</span></span>
+                </div>
+            </div>
+
+            <div class="game-canvas-container">
+                <canvas id="game-canvas" width="1000" height="600"></canvas>
+                <div class="game-hud">
+                    <div class="hud-speed">
+                        <span>Speed</span>
+                        <span class="speed-value" id="speed-display">0</span> km/h
+                    </div>
+                    <div class="hud-drift">
+                        <span>Drift Points</span>
+                        <span class="drift-value" id="drift-display">0</span>
+                    </div>
+                    <div class="hud-multiplier">
+                        <span>Multiplier</span>
+                        <span class="multiplier-value" id="multiplier-display">1.0x</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="play-controls">
+                <p>📍 ARROW KEYS to move | SPACE to drift | Collect coins for credits</p>
+                <button class="btn btn-danger" onclick="endDriftSession()">EXIT</button>
+            </div>
+        </div>
+
+        <!-- Garage Screen -->
+        <div id="garage-screen" class="screen">
+            <div class="garage-header">
+                <button class="btn-back" onclick="goToScreen('home-screen')">← BACK</button>
+                <h2>GARAGE</h2>
+            </div>
+
+            <div class="garage-content">
+                <div class="car-list" id="car-list">
+                    <!-- Cars will be populated here -->
+                </div>
+
+                <div class="car-details" id="car-details">
+                    <h3>Select a car to view details</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- Shop Screen -->
+        <div id="shop-screen" class="screen">
+            <div class="shop-header">
+                <button class="btn-back" onclick="goToScreen('home-screen')">← BACK</button>
+                <h2>SHOP</h2>
+                <div class="shop-credits">Credits: <span id="shop-credits">0</span></div>
+            </div>
+
+            <div class="shop-content">
+                <div class="shop-tabs">
+                    <button class="tab-btn active" onclick="switchShopTab('cars')">CARS</button>
+                    <button class="tab-btn" onclick="switchShopTab('engine')">ENGINE</button>
+                    <button class="tab-btn" onclick="switchShopTab('tires')">TIRES</button>
+                    <button class="tab-btn" onclick="switchShopTab('camber')">CAMBER</button>
+                </div>
+
+                <div class="shop-items" id="shop-items">
+                    <!-- Shop items will be populated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/game.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/physics.js"></script>
+</body>
+</html>
